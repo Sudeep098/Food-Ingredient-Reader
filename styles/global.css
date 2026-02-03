@@ -1,47 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #f0f2f5;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #1a1a1b;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+/* Reset for next.js default styles */
+html,
+body,
+#__next {
+  height: 100%;
 }
 
-h2 { font-size: 2rem; text-align: center; color: #2d3436; }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
 
-input[type="file"] {
+/* Custom scrollbar globally */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a67d8;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #f1f1f1;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Prevent text selection on buttons */
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
   display: block;
-  width: 100%;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  border: 2px dashed #cbd5e0;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
-.section-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 2rem;
-  color: #4a5568;
-  border-bottom: 2px solid #edf2f7;
-  padding-bottom: 0.5rem;
+/* Remove default button styles */
+button {
+  font-family: inherit;
 }
 
-.summary-box {
-  white-space: pre-wrap; /* Keeps the CV-like formatting */
-  font-size: 1.1rem;
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border-left: 5px solid #48bb78;
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animation for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    #f0f0f0 0%,
+    #e0e0e0 20%,
+    #f0f0f0 40%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .no-print {
+    display: none;
+  }
 }
