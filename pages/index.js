@@ -454,6 +454,61 @@ export default function Home() {
     </>
   );
 }
+ ${fileName ? "has-file" : ""}`}
+                >
+                  <div>
+                    <div className="file-icon">📸</div>
+                    <div className="file-label-text">
+                      {fileName ? (
+                        <>
+                          ✓ {fileName}
+                          <small>Click to change</small>
+                        </>
+                      ) : (
+                        <>
+                          Click to upload or drag & drop
+                          <small>Supports JPG, PNG, WEBP</small>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <button
+                className="analyze-btn"
+                disabled={isProcessing || !fileName}
+                onClick={() => document.getElementById("imageInput").click()}
+              >
+                {isProcessing
+                  ? "⏳ Processing..."
+                  : fileName
+                  ? "✓ Ready to Analyze"
+                  : "🔍 Select Image to Analyze"}
+              </button>
+            </div>
+
+            {showResults && (
+              <div className="results-section">
+                <div className="result-card">
+                  <h3>📄 Extracted Text</h3>
+                  <pre className={isProcessing ? "loading" : ""}>{ocrText}</pre>
+                </div>
+
+                <div className="result-card">
+                  <h3>🤖 AI Analysis</h3>
+                  <div className={`summary-content ${isProcessing ? "loading" : ""}`}>
+                    {summary}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
       />
 
       <h4>Extracted Text</h4>
